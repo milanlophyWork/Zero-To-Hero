@@ -431,3 +431,100 @@ if(shouldDrive){
 
 */
 
+    // Switch statement
+/*
+const day = 'monday'// Switch statement is an alternative way of writing a complicated if/else statement when all that is needed is to compare one value to multiple different options.
+
+switch(day){
+    case 'monday': 
+        console.log('Plan Course Structure') // we can have multiple lines of code and we don't need curly braces for the same
+        console.log('Go to coding meetup')
+        break // After each block break is necessary to prevent execution of subsequent cases. 
+    case 'tuesday' :
+        console.log('Prepare theory videos')
+        break   // If the break statement is omitted after a case the code will continue executing the following cases until a break is encountered or switch ends. This is called fall-through behaviour.
+    case 'wednesday' :
+    case 'thursday' :
+        console.log('Practise code examples') // this code will be executed for both wednesday and thursday
+        break
+    case 'friday' :
+        console.log('Study udemy course')
+        break
+    case 'saturday':
+        console.log('Revise everything')
+        break
+    case 'sunday':
+        console.log('Go to church')
+        break
+    default : // equivalent to else block in if-else statement. Executed when none of the other cases match
+        console.log('Invalid day')
+        break
+}
+*/
+    // Without switch
+/*
+const day = 'sunday'
+
+if(day === 'sunday'){ // no need of break as js only execute one of these blocks
+    console.log('Go to church')
+}else if(day === 'monday'){
+    console.log('Plan course structure')
+    console.log('Go to code meetup')
+}else if(day === 'tuesday'){
+    console.log('Prepare theory videos')
+}else if(day === 'wednesday' || day === 'thursday'){
+    console.log('Practise code examples')
+}else if(day === 'friday'){
+    console.log('Study udemy course')
+}else if(day === 'saturday'){
+    console.log('Revise everything')
+}else {
+    console.log('Invalid day') // switch statement have a little bit more code but it is more readable and easier to understand when comparing a single value to multiple options.
+} 
+    */
+
+    // Statements and Expressions
+
+/* An expression is a piece of code that produces a value. For eg : 3 + 4 is an expression because it produces a value. 1991 is also an expression because it produces a value in js
+   Boolean values and logical operations are also expressions. eg: true && false as it produce a boolean value. On the other hand, a statement is a larger piece of code that is executed
+   and does not produce a value by itself. A declaration is like a complete sentence and expressions are like words that make up the sentences. We write our whole programs as a sequence of 
+   actions and these actions are statements. eg: if-else statement. These statements perform actions such as declaring the variable, etc but do not themselves produce a value.  
+*/ 
+
+/*
+
+if(23 > 10){
+    const str = '23 is bigger'; // doesn't produce a value but if, here declares a variable called str. ie statements are like sentences that translate actions we want the program to perform
+} // when something end with a semi-colon its like a complete sentence. In template literals we can only insert expressions, but not statements. [ie can't insert if into ${} in template literal]
+
+*/
+
+    // Ternary Operator / Conditional statement
+
+/*  Allows us to write something similar to an if-else statement but all in one line. Also called ternary operator because it has three parts condition, if part and else part. Operator 
+    always produces a value. So an operator can be called an expression. This allows us to assign the result of the ternary operator to a variable. */
+
+/*
+const age = 18
+
+age >= 18 ? console.log('Eligible for a driving license') : console.log('Not eligible for a driving license')
+
+const drink = age >= 18 ? 'wine' : 'water'
+console.log(drink)
+
+let drink2 // Without conditional operator, we would need to declare the variable outside and then assign it inside an if-else statement.
+
+if(age >= 18){
+    drink2 = 'wine'
+}else{
+    drink2 = 'water'
+}
+
+console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}.`) // Since ternary operator is an expression that produces a value, we can use it inside template literals unlike if-else statements.
+
+// The ternary operator is not intended to replace if-else statements entirely. We still need if-else for larger blocks of code that require multiple statements. Ternary operator is perfect for
+//  quick decisions, especially in places where javaScript expects an expression, such as inside template literals.
+
+*/
+
+    // JavaScript releases ES5 ES6 + and ESNext
