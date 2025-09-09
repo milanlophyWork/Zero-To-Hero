@@ -62,3 +62,39 @@ if(markBMI > johnBMI){
     console.log(`John's BMI (${johnBMI})is higher than Mark's (${markBMI})`)
 }
     */
+
+/*
+
+// Dolphins scored 96, 108 and 89. Koalas scored 88, 91 and 110. Calculate the average score for dolphins and koalas and find the winner.
+
+const scoreDolphins = (96 + 108 + 89) / 3
+const scoreKoalas = (88 + 91 + 110) / 3
+
+if(scoreDolphins > scoreKoalas){
+    console.log('Dolphins win the trophy')
+}else if(scoreDolphins < scoreKoalas){
+    console.log('Koalas win the trophy')
+}else{
+    console.log('Both win the trophy')
+}
+
+*/
+
+// Include a requirement for a minimum score of 100. With this rule, a team only wins if it has a higher score than the other team and the same time a score of atleast 100 points.
+
+/*
+const scoreDolphin = (97 + 112 + 101) / 3
+// const scoreKoalas = (109 + 95 + 123) / 3
+const scoreKoalas = (109 + 95 + 106) / 3
+
+
+if(scoreDolphin > scoreKoalas && scoreDolphin >= 100){
+    console.log('Dolphins win the trophy',)
+}else if(scoreKoalas > scoreDolphin && scoreKoalas >= 100){
+    console.log('Koalas win the trophy')
+}else if(scoreKoalas === scoreDolphin && scoreKoalas >= 100 && scoreDolphin >= 100){
+    console.log('Both win the trophy')
+}else{
+    console.log('No one wins the trophy')
+}
+*/
