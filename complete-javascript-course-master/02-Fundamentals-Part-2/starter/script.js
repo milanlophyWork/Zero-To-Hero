@@ -1,4 +1,4 @@
-    
+
     // Activating Strict Mode
 
 /* 
@@ -119,16 +119,211 @@ console.log(yearsForRetirement(2003, 'Milan')) // Unlike fn declarations and fn 
     */
 
     // Functions calling other fns
-
+/*
 function cutFruit(fruit){
     return fruit * 4;
 }
 
 function fruitProcessor(apples, oranges){ // Consider fruit processor can only make juice with smaller fruit pieces. So want another machine (fn) that cuts fruits we give it.
     const appleCut = cutFruit(apples)
-    const orangeCut = cutFruit(oranges) // Calling cutFruit fn from fruitProcessor fn
+    const orangeCut = cutFruit(oranges) // Calling cutFruit fn from fruitProcessor fn instead of multiplying apples with 4 and oranges with 4. If a separate fn is there we can easily update 4 to more pieces. 
     const juice = `Juice with ${apples} apples cut into ${appleCut} pieces and ${oranges} oranges cut into ${orangeCut} pieces`
     return juice
 }
 
 console.log(fruitProcessor(2,3))
+*/
+
+    // Reviewing fns
+/*
+const calcAge = function(birthYear){
+    return 2025 - birthYear
+}
+
+const yearsForRetirement = function (birthYear, firstName){
+    const age = calcAge(birthYear)
+    const retirement = 65 - age
+
+    if(retirement >= 0){
+        return retirement
+    }else{
+        console.log(`${firstName} has already retired`) 
+        return -1 // -1 is like a std number in programming. We usually return a number when we receive a number as input
+    } // return statement immediately exits or immediately returns the function. Anything written after return is ignored.
+}
+
+console.log(yearsForRetirement(2003, 'Milan'))
+console.log(yearsForRetirement(1955, 'Jonas')) // short cut : alt + up/down to move a line up or down [Selector option shows such shortcuts]
+
+*/
+
+    // Introduction to Arrays
+/*
+
+// Data structures bundle all values together into some bigger container. Array is one such data structure. Other one is objects.
+
+const family = ['Lophy', 'Sini','Helan','Heaven']
+console.log(family)
+
+const years = new Array(1970, 1971, 2002, 2005, 2011) // Another way of creating an array
+console.log(years)
+console.log(family[0], years[0]) // Square brackets for retrieving elements. // Arrays are zero based ie first element is the element number zero. Second element is element number one, ...
+console.log(family.length) // To get actual number of elements in array
+console.log(family[family.length-1]) // To get last element in array // this means we can put an expression inside these brackets. Expression gives a value
+
+years[2] = 2003  // Square brackets for adding elements to the array
+console.log(years) // variables with const cannot be changed but here we change value in years. Because years just store a reference only. Actual array is stored somewhere else in memory.
+// Only primitive values are immutable. But array is not a primitive value.
+
+// family = ['Tiya', 'Ziya']// We cannot replace an array entirely
+
+const firstName = 'Milan'
+const milan = [firstName, 'Lophy', 2025-2003, 'student', family]// Arrays can hold values with different types all at the same time // Each position can have an expression , variable name , arrays, objects, strings, etc
+console.log(milan, milan.length)
+
+    // Exercise with arrays
+
+const calcAge = function (birthYear){
+    return 2025 - birthYear
+}
+
+console.log(calcAge(years[years.length-1]))
+
+const age = years.map(year=> calcAge(year)) // calculating the age of into a new array
+console.log(age)  // forEach used to perform an action to each item map is used to transform each item and create a new array from the results
+*/
+
+    // Basic array operations (Methods)
+/*
+// JavaScript has some built in fns that can be applied directly on the arrays. These are called methods. We can consider methods as array operations.
+
+const fruits = ['Grape', 'Water melon', 'Apple']
+
+    // Adding Elements
+fruits.push('Orange') // push method adds element to the end of an array // It mutates the original array
+console.log(fruits) 
+
+const newLength = fruits.push('Banana')// since push is a fn it can return a value, pass arguments to it. // Here the value it returns is the length of the new array
+console.log(newLength)
+
+fruits.unshift('Guava')// unshift method adds element to the beginning of array. Unshift method also returns a value ie length of new array as push
+console.log(fruits)
+
+    // Remove elements
+const popped = fruits.pop() // opposite of push method , removes last element from array // no argument needed // pop method also returns a value. pop return the removed element (not the length)
+console.log(popped)
+console.log(fruits)
+
+fruits.shift()// removing the first element from an array // no argument needed // Return the removed element as value
+console.log(fruits)
+
+console.log(fruits.indexOf('Apple'))// Method that tells us which position a certain element is in the array
+console.log(fruits.indexOf('Banana')) // return -1 if element not present in the array
+
+console.log(fruits.includes('Water melon')) // includes is an ES6 method similar to indexOf but more useful // Return true if element is in the array and false if not in the array
+console.log(fruits.includes('Banana')) 
+
+fruits.push(23)// includes use strict equality for this check. ie doesn't perform type coercion
+console.log(fruits)
+console.log('String 23 :', fruits.includes('23'), 'Number 23 :',fruits.includes(23))
+console.log('String 23 :', fruits.indexOf('23'),'Number 23 :', fruits.indexOf(23))
+
+if(fruits.includes('Mango')){// We can use include method to write conditionals
+    console.log('Mango is already included ')
+}else{
+    console.log("Can't find Mango")
+}
+
+*/
+
+    // Intro to Objects
+/*
+const milanArr = [
+    'Milan',
+    'Lophy',
+    2025 - 2003,
+    'Software Engineer',
+    ['Lophy', 'Sini',' Helan', 'Heaven']
+] // Here in arrays order of values matter while retrieving them. We retrieve them using order number. In objects order of values is not a matter at all.
+
+const milanObj = { // In objects, we actually define key-value pairs. So we can give each of the values a name. In arrays we can't give them a name.
+    firstName : 'Milan', // key (or property) => variable name, value can be of any type we want here.   
+    lastName : 'Lophy',
+    age : 2025 - 2003, // value can be an expression too.
+    job : 'Software Engineer',
+    family : ['Lophy', 'Sini','Helan', 'Heaven']
+} // This way of creating object is called object literal syntax because we are literally writing down the entire object content
+
+// Use arrays for order data and objects for unstructured data
+*/
+
+    // Dot vs Bracket notation 
+/*
+const milan = {
+    firstName: 'Milan',
+    lastName: 'Lophy',
+    age: 2025 - 2003,
+    job: 'Software Engineer',
+    family: ['Lophy', 'Sini', 'Helan', 'Heaven']
+}
+
+// retrieving data from objects
+console.log(milan)  
+console.log(milan.lastName) // Using dot notation. dot is actually an operator which will go to this object and then retrieve the property with the name we specified here.
+console.log(milan['family']) // Using bracket notation 
+
+const nameKey = 'Name'
+console.log(milan['first' + nameKey], milan['last' + nameKey])// In bracket notation we can put any expression we like. This won't work in dot notation.
+
+// Suppose we don't know which property to be showed. We get this info from user interface. Using a prompt to get user choice. Prompt will return a string. It is stored in a variable so we can use.
+const input = 
+    prompt('What do you want to know about Milan? Choose from firstName, lastName, age, job, family')
+ 
+if(milan[input]){
+    console.log(milan[input])
+}else{
+    console.log('Wrong request! Choose between firstName, lastName, age, job and friends')
+}
+
+// adding new properties to the object
+milan.location = 'Kerala'
+milan['bloodGroup'] = 'O+'
+console.log(milan) // dot notation (cld as member access) has high precedence and bracket notation cld as [computed member access as we can compute property names we want to access] next high precedence
+
+console.log(`${milan.firstName} has ${milan.family.length} friends and her best friend is ${milan.family[1]}`)
+*/
+
+    // Object Methods
+
+const milan = {// Fns are values. It means we can create a key-value pair with fn as a value in object.
+    firstName : 'Milan',
+    lastName : 'Lophy',
+    birthYear : 2003,
+    job : 'SoftwareEngineer',
+    family : ['Lophy', 'Sini', 'Helan', 'Heaven'],
+    hasDriversLicense : false,
+
+    //calcAge : function(birthYear){ // Any function that is attached to a object is called a method.
+    //   return 2025 - birthYear
+    // } // Here we need fn exp. Fn declaration won't works here
+
+    //calcAge : function(){ 
+        // console.log(this) // this keyword points to milan object
+    //    return 2025 - this.birthYear
+    // },// birthYear accessed directly from object using a special variable called 'this' (provided by javascript for every method) instead of passing it as commented below
+
+    calcAge : function() {
+        this.age = 2025 - this.birthYear
+        return this.age
+    }
+}
+
+//console.log(milan.calcAge(milan.birthYear)) 
+//console.log(milan['calcAge'](milan.birthYear)) // calcAge is the property so inside bracket. Fn call after bracket.
+
+console.log(milan.calcAge()) // Suppose we want to access age multiple times. If not stored to new variable age, each time fn is runned and age is calculated. 
+// console.log(milan['calcAge']())
+
+console.log(milan.age) // Now just call the age 
+console.log(milan.age)
+console.log(milan.age)

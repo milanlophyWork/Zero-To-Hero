@@ -1,4 +1,7 @@
-    // JS fundamentals Part 1 // Values and Variables
+    // JS fundamentals Part 1 
+     
+// Values and Variables
+
 /*
 // Declare variables called country, continent and population and assign their values according to your own country(population in millions)
 let country = 'India'
@@ -110,3 +113,48 @@ let tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2
 
 console.log(`The bill was ${bill}, the tip was ${tip} and the total value ${bill + tip}.`)
 */
+
+    // JS Fundamentals Part 2
+
+// 2 teams Dolphins and Koalas. Each team completes gynamstics 3 times, and then average is calculated. A team only wins if it has atleast double the average score of the other team. Otherwise no team wins.
+// Create an arrow fn to calculate average of score. Create 2 variables scoreDolphins and scoreKoalas. Create a fn checkWinner to determine the winner.
+
+/*
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3)/3
+
+
+const scoreDolphins = calcAverage(85,54,41)
+const scoreKoalas = calcAverage(23,34,27)
+console.log(scoreDolphins,scoreKoalas)
+
+function checkWinner(dolphinScore, koalasScore){
+    if(dolphinScore >= 2*koalasScore){
+        return `Dolphins win (${dolphinScore} vs ${koalasScore})`
+    }else if(koalasScore >= 2*dolphinScore){
+        return `Koalas win (${koalasScore} vs ${dolphinScore})`
+    }else{
+        return 'No team wins'
+    }
+}
+
+console.log(checkWinner(scoreDolphins, scoreKoalas))
+*/
+
+// Improving tip calculator. tip 15% if bill between 50 and 300 and if value is different tip is 20%. Create a fn calcTip . Test the fn using bill value 100
+// Create an array called bills and tips. create an array totals containing total values.
+
+/*
+const calcTip = billValue => billValue >= 50 && billValue <= 300 ? billValue * 0.15 : billValue * 0.20
+
+console.log(calcTip(100))
+
+const bills = [125, 550, 44]
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
+
+const totals = [bills[0]+tips[0], bills[1]+tips[1], bills[2]+tips[2]]
+console.log(tips)
+console.log(totals)
+
+*/
+
+// 
