@@ -157,4 +157,36 @@ console.log(totals)
 
 */
 
-// 
+// Improving BMI with objects. Create an object for both Mark and John with properties for their full name, mass, and height (Mark Miller and John Smith).
+// Create a calcBMI method on each object to calculate BMI. Assign BMI value to a property called bmi.
+
+/*
+const mark = {
+    fullName : 'Mark Miller',
+    mass : 78, // Change to 8 for making John's BMI higher
+    height : 1.69,
+    calcBMI : function(){
+        this.bmi = this.mass / (this.height ** 2)
+        return this.bmi
+    }
+}
+
+const john = {
+    fullName : 'John Smith',
+    mass : 92,
+    height : 1.95,
+    calcBMI : function(){
+        this.bmi = this.mass / (this.height ** 2)
+        return this.bmi
+    }
+}
+console.log(john.calcBMI(), mark.calcBMI())
+if(mark.calcBMI() > john.calcBMI()){
+    console.log(`${mark.fullName}'s BMI (${mark.calcBMI().toFixed(2)}) is higher than ${john.fullName}'s (${john.calcBMI().toFixed(2)}) !`)
+}else if(john.calcBMI() > mark.calcBMI()){
+    console.log(`${john.fullName}'s BMI(${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi}) !`)
+}else{
+    console.log('Both have equal BMI.')
+}
+    */
+

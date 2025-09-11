@@ -290,11 +290,13 @@ milan.location = 'Kerala'
 milan['bloodGroup'] = 'O+'
 console.log(milan) // dot notation (cld as member access) has high precedence and bracket notation cld as [computed member access as we can compute property names we want to access] next high precedence
 
+// Challenge
+
 console.log(`${milan.firstName} has ${milan.family.length} friends and her best friend is ${milan.family[1]}`)
 */
 
     // Object Methods
-
+/*
 const milan = {// Fns are values. It means we can create a key-value pair with fn as a value in object.
     firstName : 'Milan',
     lastName : 'Lophy',
@@ -315,6 +317,11 @@ const milan = {// Fns are values. It means we can create a key-value pair with f
     calcAge : function() {
         this.age = 2025 - this.birthYear
         return this.age
+    },
+
+    getSummary : function(){
+        this.summary = `${this.firstName} is a ${this.calcAge()} year old software engineer. She has ${this.hasDriversLicense ? 'a' : 'no'} driving license.`
+        return this.summary // calcAge is calling better in above string because age will be undefined if calcAge is not called atleast once. So age will be undefined.
     }
 }
 
@@ -327,3 +334,96 @@ console.log(milan.calcAge()) // Suppose we want to access age multiple times. If
 console.log(milan.age) // Now just call the age 
 console.log(milan.age)
 console.log(milan.age)
+
+// Challenge : Create a getSummary method
+
+// milan.getSummary = `${milan.firstName} is a ${milan.age} year old ${milan.job}. She doesn't have a driving license.`
+console.log(milan.getSummary()) // In arrays we called methods like pop, shift, etc. These methods are built in methods. This means that arrays are a special kind of object.
+*/
+
+    // Iteration: The for loop
+/*
+// if-else statement is a control structure. Loop is one such control structure. Loops allow us to automate repetitive tasks.
+
+for(let i = 0 ; i< 10; i++){
+    console.log('Lifting weights repetition ', i+1)
+}
+    */
+
+    // Looping arrays: breaking and continuing
+/*
+// One of the most used application of for loop is to loop through arrays.
+
+const milan = [
+    'Milan',
+    'Lophy',
+    2025-2003,
+    'Software Engineer',
+    ['Lophy','Sini','Helan','Heaven'] // Array is a special type of object
+]
+
+const types = [] // Creating a new array with type of all these elements
+
+for(let i = 0; i< milan.length; i++){
+    // reading from jonas array
+    console.log(milan[i], typeof milan[i])
+
+    // filling types array
+    // types[i] = typeof milan[i] 
+    types.push(typeof milan[i])
+}
+console.log(types)
+
+const years = [1991, 2007, 1969, 2020]
+const ages = []
+
+for(let i = 0; i< years.length; i++){
+    ages.push(2025- years[i])
+}
+console.log(ages)
+
+// Continue and break statement
+
+// Array must have only strings. use continue
+
+console.log('----ONLY STRINGS-----')
+for(let i= 0 ; i< milan.length; i++){
+    if(typeof milan[i] !==  'string') continue // continue is used to exit the current iteration of the loop and continue to the next one.
+    console.log(milan[i])
+}
+// break is used to completely terminate the whole loop
+
+// Log no elements if found a number. use break
+
+console.log('----BREAK WITH A NUMBER----')
+for(let i=0; i< milan.length; i++){
+    if(typeof milan[i] === 'number') break
+    console.log(milan[i])
+}
+    */
+
+    // Looping backwards and loops in loops
+/*
+const milan = [
+    'Milan',
+    'Lophy',
+    2025-2003,
+    'Software Engineer',
+    ['Lophy','Sini','Helan','Heaven']
+]
+
+for(let i = milan.length-1; i >= 0; i--){ // Looping backwards
+    console.log(i,milan[i])
+}
+
+for(let exercise = 1; exercise < 4; exercise ++){ // Loops in loops
+    console.log('-----Starting Exercise----- ', exercise) // We have 3 different exercises and we want to repeat each of them five times
+
+    for(let rep = 1; rep < 6; rep ++){
+        console.log(`Exercise ${exercise}: Lifting weight repetition ${rep}`)
+    }
+}
+    */
+
+    // While loop
+
