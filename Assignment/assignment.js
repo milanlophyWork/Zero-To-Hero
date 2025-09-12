@@ -190,3 +190,50 @@ if(mark.calcBMI() > john.calcBMI()){
 }
     */
 
+// Improving calcTip using loops. Create an array called bills. Create an empty array for tips and totals. Create calcTip fn and 
+// calculate tips and totals using a for loop 
+
+/*
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]
+const tips = []
+const totals = []
+
+const calcTip = bill => (bill >= 50 && bill < 300) ? bill * 0.15 : bill * 0.20
+   
+
+for(let i = 0; i< bills.length; i++){
+    tips.push(calcTip(bills[i]))
+    totals.push(tips[i] + bills[i])
+}
+console.log(tips)
+console.log(totals)
+
+
+// Bonus question : Write a fn calcAverage that calculate avg of array passed. Calculate avg of totals. 
+
+const calcAverage = arr => {
+    let sum = 0
+    
+    for(let i =0 ; i< arr.length ; i++){
+        sum += arr[i]
+    }
+    return sum/arr.length
+}
+
+console.log(calcAverage(bills))
+console.log(calcAverage(totals))
+*/
+    // Developer Skills & Editor Setup
+    
+const temp = [17, 21, 23]
+
+function printForecast(arr){
+    let str = ''
+    for(let i = 0; i< arr.length; i++){
+        str += `${arr[i]} deg C in ${i+1} days ... `
+    }
+    console.log('... ' + str)
+}
+
+printForecast(temp)
+printForecast([12, 5, -5, 0, 4])

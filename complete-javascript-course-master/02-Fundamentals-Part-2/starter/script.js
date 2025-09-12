@@ -427,3 +427,23 @@ for(let exercise = 1; exercise < 4; exercise ++){ // Loops in loops
 
     // While loop
 
+// for(let i=0; i< 5;i++){
+//     console.log('Lifting weights repetition', i)
+// }
+
+let i = 0
+while(i<5){
+    console.log('Lifing weights repetition', i)
+    i++
+} // while loop is lot more versatile than for loop. ie it can be used in a larger variety of situations. That's because most of the while loops does not really need a counter. Only need a condition that is true for running
+
+// Eg: for while loop without counter : Rolling a dice
+
+let dice = Math.trunc(Math.random() * 6) + 1
+console.log(dice)
+
+while(dice !== 6){ // If first already is a 6 the loop never starts.
+    console.log(`You rolled a ${dice}`)
+    dice = Math.trunc(Math.random()*6)+1 // Math.random() create a number between 0(included) and 1(excluded). On multiplying by 6 it gives a number in range 0 <= result < 6. Math.trunc removes the decimal part so gives a number 0,1,2,3,4 or 5. Adding 1 gives possible values of a dies ie 1 to 6
+    if(dice=== 6) console.log('Loop is about to end...')
+} // use while loop when you don't know beforehand how many iterations the loop will have. Use for loop when you know how many iterations are required.
