@@ -1,0 +1,64 @@
+<!-- index.html is always the name of the main file. ctrl + b to hide the side bar. ! + tab gives basic structure of html -->
+<!DOCTYPE html> <!-- Doctype identifies this html file as being html 5. lang here is just telling the browser that we are using english language -->
+<html lang = "en">
+    <head> <!-- Whatever we put in head is the setting of the page or describing the page-->
+        <meta charset="UTF-8"/>
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+        <title>Basic html and css</title>
+        
+        <link rel="stylesheet" href="style.css">
+
+        <!--<style> /* css is not for visible content of page so is put in head tag. To style we need to first select them. There are many selectors. The most
+        basic one is the element selector. With element we can select all elements of a certain type. Eg: body, p, etc */
+
+        
+        body{ /* Element selector */
+            background-color: burlywood;
+        } 
+
+        /* Usually we write css in external css file. This is internal/embedded css. Styling using style attribute to an element is inline css. */
+        </style> -->
+    </head>
+    <body><!-- Whatever we put in body will be visible on page -->
+
+        <h1> <!-- level 1 heading. leves continues till h6 -->
+            JavaScript is fun, but so is HTML & CSS!
+        </h1> <!--We can nest element inside one another. Eg: h1 inside body, a tag inside p, etc-->
+        <p class="first"> <!--But classes and ids are attributes that can be used on all elements. They are used to name elements and 
+        hence helps to identify each element for styling and also to perform DOM manipulation-->
+
+            You can learn JavaScript without HTML and CSS, but for dOM manipulation it's useful to have some basic ideas of HTML & CSS.
+            You can learn more about it 
+
+            <a href="https://www.udemy.com/">
+                on Udemy
+            </a>. <!-- In HTML some elements can have attributes. These attributes basically describe elements. Here we describe
+             anchor element using href(hypertext reference) attribute. In href we put the URL where this link should point to.
+             Anchor element is an inline element. ie It flows in line with the rest of the text. Not start in next line -->
+
+        </p>
+
+        <h2>Another Heading</h2><!-- h2 is a block element. It starts in next line. Not as rest of previous line. -->
+
+        <p class="second">Just another paragraph.</p> <!-- Difference between classes and ids is that ids must be unique. Each id
+        can only be used once on the page whereas classes can be used over and over again. It's better to use classes. -->
+
+        <img id="course-image" src="https://img-c.udemycdn.com/course/480x270/437398_46c3_10.jpg"/> <!--img doesn't have a closing tag because we don't 
+        put any written content inside it. src cannot have effect on a tag and href have no effect on img tag.  -->
+
+        <!-- creating a form. We want the content of form in a box. There are many ways of creating boxes in HTML.
+          The most generic box is a div. Here for form we use form tag. Beacuse that is semantic (has meaning). When google searches,
+          it identifies it as form. div has no meaning at all just a division of box  -->
+        <form id="your-name">
+
+            <h2>Your name here</h2>
+            <p class="first">Please fill in this form <span class="smile">:)</span></p>
+
+            <input type="text" placeholder="Your name"> <!-- Has no closing tag -->
+            <button>OK!</button>
+
+        </form><!-- For names, in css we use dash to separate each word while in js we use camelCase. -->
+
+    </body>
+</html> <!-- -->

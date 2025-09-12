@@ -1,0 +1,57 @@
+*{/* global reset : reseting all of the margins and paddings. * selects all elements on the page. */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* It includes border and padding to width & height of an element. By default total width and height doesn't include its padding & border. */
+}
+body{
+    background-color: khaki;
+    font-family: Arial; /* font-family property is a type of property that gets inherited (Most properties don't inherit, but font related properties inherits ). So all child elements of body will get same font. */
+    font-size: 20px;
+    padding: 50px;
+}
+h1{
+    margin-bottom: 25px;
+}
+h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+p{
+    margin-bottom: 20px;
+}
+.first{ /* dot is the class selector */
+    color: darkgoldenrod;
+}
+
+#your-name{
+    background-color: rgb(119, 113, 21);
+    border: 4px solid rgb(164, 127, 68); /* border is a short hand property that it allows us to add multiple values (width, style, color) in this one property 'border' */
+    width: 400px;
+    padding: 25px;
+    margin-top: 30px;
+}
+input, button{
+    padding: 10px;
+    font-size: 16px;
+}
+a{
+    background-color: burlywood; /*inline element just take up width it needed. block element takes up the whole block */
+}
+
+.smile{
+    color: rgb(238, 204, 146);
+    font-size: 25px;
+}
+#course-image{
+    width: 300px;
+}
+#your-name h2{
+    color: gold;
+}
+
+/* Box model is one of the fundamental part of the css. It's the main part that defines how elements are displayed on a webpage and also how they are sized. According to box model,
+   each and every element on a webpage can be seen as a rectangular box and each box can have a width, height, margins, padding, ... And we can specify all these using css properties.
+   First content of a box : includes all text, images and other content. Next padding is a transparent area around content inside of box. Next, we can specify a border for any box. 
+   Border goes around padding and content. Then we have the margin ie whitespace outside the box. Fill area gets filled with background color and background image along with 
+   padding and border but not margin
+*/
