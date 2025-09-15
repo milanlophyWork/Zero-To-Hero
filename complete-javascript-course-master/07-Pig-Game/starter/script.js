@@ -25,42 +25,74 @@ diceEl.classList.add('hidden')
 const scores = [0, 0]
 let currentScore = 0 // Should not be inside fn if it does, then each time we roll a dice current score would be resetted
 let activePlayer = 0
+let playing = true
+
+const switchPlayer = function(){ // refactoring switching player : Usually when we refactor something there maybe something changes in the code. In such cases it's useful to have a parameter.
+    document.getElementById(`current--${activePlayer}`).textContent = 0
+    currentScore = 0
+    activePlayer = activePlayer === 0 ? 1 : 0
+    player0El.classList.toggle('player--active')
+    player1El.classList.toggle('player--active')
+}
 
 // Rolling dice functionality
 btnRoll.addEventListener('click',()=>{
-    // 1. Generating a random dice roll
-    const diceValue = Math.trunc(Math.random() * 6) + 1 
+    if(playing){
 
-    // 2. Display the dice
-    diceEl.classList.remove('hidden')
-    diceEl.src = `dice-${diceValue}.png`    
+        // 1. Generating a random dice roll
+        const diceValue = Math.trunc(Math.random() * 6) + 1 
 
-    // 3. Check if rolled 1:
-    if(diceValue !== 1){
-        // Add diceValue to current score
-        currentScore += diceValue
-        document.getElementById(`current--${activePlayer}`).textContent = currentScore
+        // 2. Display the dice
+        diceEl.classList.remove('hidden')
+        diceEl.src = `dice-${diceValue}.png`    
 
-        // current0El.textContent = currentScore // current score for player 0 only
-    }else{
-        // switch to next player
-        
-        /*if(activePlayer === 0){
-            current0El.textContent = 0
-            currentScore = 0
-            activePlayer = 1
-        } else{
-            current1El.textContent = 0
-            currentScore = 0
-            activePlayer = 0
-        } */
+        // 3. Check if rolled 1:
+        if(diceValue !== 1){
+            // Add diceValue to current score
+            currentScore += diceValue
+            document.getElementById(`current--${activePlayer}`).textContent = currentScore
 
+            // current0El.textContent = currentScore // current score for player 0 only
+        }else{
+            // switch to next player
+            
+            /*if(activePlayer === 0){
+                current0El.textContent = 0
+                currentScore = 0
+                activePlayer = 1
+            } else{
+                current1El.textContent = 0
+                currentScore = 0
+                activePlayer = 0
+            } */ // Instead of if-else use ternary operator
 
-        document.getElementById(`current--${activePlayer}`).textContent = 0
-        activePlayer = activePlayer === 0 ? 1 : 0
-        player0El.classList.toggle('player--active') // toggle method add a class if it is there and remove a class if it is not there.
-        player1El.classList.toggle('player--active')
-        currentScore = 0
+            switchPlayer()
+        }
     }
+
 })
 
+
+btnHold.addEventListener('click',()=>{ // hold shouldn't work if score is zero 
+    if(playing){
+        // 1. Add current score to the score of active player
+    
+        scores[activePlayer] += currentScore // activePlayer = 0 => scores[0] First value in scores array // if 1 then scores[1] = scores[1] + currentScore
+        document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
+
+        // 2. Check if player's score is >= 100
+    
+        if(scores[activePlayer] >= 100){
+            // if true then Finish the game
+
+            playing = false
+            diceEl.classList.add('hidden')
+
+            document.querySelector(`.player--${activePlayer}`).classList.add('player--winner') // adding winner class and also remove active player class
+            document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
+        }else{
+            // else Switch to the next player
+            switchPlayer()
+        }
+    }
+})
