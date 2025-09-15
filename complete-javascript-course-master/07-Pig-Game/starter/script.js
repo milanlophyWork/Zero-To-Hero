@@ -18,14 +18,28 @@ const btnHold = document.querySelector('.btn--hold')
 
 
 // Starting conditions
-score0El.textContent = 0 // Setting the initialScore to zero
-score1El.textContent = 0
-diceEl.classList.add('hidden')
 
-const scores = [0, 0]
-let currentScore = 0 // Should not be inside fn if it does, then each time we roll a dice current score would be resetted
-let activePlayer = 0
-let playing = true
+let scores, currentScore, activePlayer, playing  
+
+const init = function(){
+    scores = [0,0]
+    currentScore = 0  // Should not be inside fn in btnRoll.addEventListener. if it does, then each time we roll a dice current score would be resetted
+    activePlayer = 0
+    playing = true
+
+    score0El.textContent = 0 // Setting the initialScore to zero
+    score1El.textContent = 0
+    current0El.textContent = 0
+    current1El.textContent = 0
+
+    diceEl.classList.add('hidden')
+    player0El.classList.remove('player--winner')
+    player1El.classList.remove('player--winner')
+    player0El.classList.add('player--active') // As we want the player 1 to be active for the new game
+    player1El.classList.remove('player--active')
+}
+init()
+
 
 const switchPlayer = function(){ // refactoring switching player : Usually when we refactor something there maybe something changes in the code. In such cases it's useful to have a parameter.
     document.getElementById(`current--${activePlayer}`).textContent = 0
@@ -96,3 +110,5 @@ btnHold.addEventListener('click',()=>{ // hold shouldn't work if score is zero
         }
     }
 })
+
+btnNew.addEventListener('click', init)
