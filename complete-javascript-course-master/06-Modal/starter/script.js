@@ -29,4 +29,10 @@ for(let i = 0 ; i < btnShowModal.length; i++){
     btnCloseModal.addEventListener('click',  closeModal) // not calling closeModal just passing the fn reference. Because if writes like this closeModal(), js immediately calls it when this line is executed. but we want it to be executed after clicking the button
     overlay.addEventListener('click',()=> closeModal()) // Or we can pass it as a call back fn. Use this syntax when there are arguments and multiple lines of code.
     
+    document.addEventListener('keydown', (event)=> { // keyboard events are called global events. They do not happen on one specific element. there are 3 types of events for keyboard. keyup, keydown, keypress
+        if(event.key === 'Escape' && !modal.classList.contains('hidden')){ // If esc is key pressed and if modal is not hidden close the modal
+            // console.log(event.key)
+            closeModal()
+        }        
+    })
 }
