@@ -24,27 +24,52 @@ document.querySelector('.guess').value = 17  For input elements content we type 
 An event is something that happens on the page. Eg: mouse click, mouse moving, key press , etc. With event Listener we wait for an event to occur and then react to it. 
 */
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1 // Math.random() * 20 => gives a number between 0 and Math.trunc removes decimal part, + 1  gives a number from 1 to 20
+let secretNumber = Math.trunc(Math.random() * 20) + 1 // Math.random() * 20 => gives a number between 0 and Math.trunc removes decimal part, + 1  gives a number from 1 to 20
 
 let score = 20
+let highScore = 0
 
+const displayMsg = function(msg){ // Refactoring with fns
+   document.querySelector('.message').textContent = msg
+}
 
 document.querySelector('.check').addEventListener('click',()=>{
    const guess = Number(document.querySelector('.guess').value )// Whenever we get something from a user interface for example from an input field, usually it will be a string.
 
    // When there is no input
    if(!guess){ // First scenario to be implemented is always the 'no input' condition.
-      document.querySelector('.message').textContent = 'No Number!'
+      // document.querySelector('.message').textContent = 'No Number!'
+      displayMsg('No Number!')
 
       // When player wins
    }else if(guess === secretNumber){
-      document.querySelector('.message').textContent = 'Correct Number!'
+      displayMsg('Correct Number!') // document.querySelector('.message').textContent = 'Correct Number!'
       document.querySelector('.number').textContent = secretNumber
 
       document.querySelector('body').style.backgroundColor = '#60b347' // This is inline style ie style that is applied directly
       document.querySelector('.number').style.width = '30rem' // Whenever manipulating style we always need to specify a string
 
-      // When guess is too high
+      if(score > highScore){
+         highScore = score
+      }
+      document.querySelector('.highscore').textContent = highScore
+
+   // When guess is wrong
+   }else if(guess !== secretNumber){ // Refactoring our code : 1) guess high and low changed to guess wrong. 2) DRY(don't repeat yourself) principle. We can also refactor the same code into a function.
+      if(score > 1){
+         displayMsg(guess > secretNumber ? 'Too high!' : 'Too low!')// document.querySelector('.message').textContent = 
+         // guess > secretNumber ? 'Too high!' : 'Too low!'   
+         score--
+         document.querySelector('.score').textContent = score
+         
+      }else{
+         displayMsg('You lost the game!!')// document.querySelector('.message').textContent = 'You lose the game!!'
+         document.querySelector('.score').textContent = 0
+      }
+
+   } // We can refactor functionality that we use over and over again into their own functions in order to make the code more dry.
+
+   /*     // When guess is too high
    }else if(guess > secretNumber){
       if(score > 1){
          document.querySelector('.message').textContent = 'Too high!'
@@ -66,13 +91,16 @@ document.querySelector('.check').addEventListener('click',()=>{
          document.querySelector('.score').textContent = 0
       }
       
-   }
+   }*/
 }) // addEventListener(type, event handler) event handler is a function that is executed when the event occurs.
 
 document.querySelector('.again').addEventListener('click', ()=> {
-   document.querySelector('.score').textContent = '20'
+   score = 20
+   secretNumber = Math.trunc(Math.random()* 20) +1
+
+   document.querySelector('.score').textContent = score
    document.querySelector('.number').textContent = '?'
-   document.querySelector('.message').textContent = 'Start guessing...'
+   displayMsg('Start guessing..') // document.querySelector('.message').textContent = 'Start guessing...'
    document.querySelector('.guess').value = ''
 
    document.querySelector('body').style.backgroundColor = '#222'
