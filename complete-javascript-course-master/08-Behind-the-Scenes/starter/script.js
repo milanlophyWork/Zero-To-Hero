@@ -235,3 +235,21 @@ const addArr = (a,b)=> a+b
 var addVar = (a,b) => a+b
 
 // Example
+
+if(!numProducts) deleteShoppingCart() // we get all products deleted even if numProducts has 10. because it is hoisted with undefined (falsy value)
+
+var numProducts = 10
+
+function deleteShoppingCart(){
+    console.log('All products deleted')
+}
+// So don't use var . Use let, const instead. And always declare all your fns first and use them only after declaration
+
+var x = 1
+let y = 2
+const z = 3
+
+console.log(x === window.x)
+console.log(y === window.y)
+console.log(z === window.z)
+// Check window obj in console. Window is the global obj of js in browser. Variables created by let and const do not create properties on window obj. Butvar does.
