@@ -44,14 +44,14 @@ function calcAge(birthYear){ // Global scope as it is a top level code.
 }
 
 const firstName = 'Milan' // global variable
-console.log(calcAge(1991))
+// console.log(calcAge(1991)) // !!! check by uncommenting
 
 
     // Hoisting with Variables
 
-console.log(me) // undefined // var is hoisted to an initial value of 'undefined'
-// console.log(job) // ReferenceError : cannot access before initialization // hoisted but job is at TDZ here.
-// console.log(birthYear)  // same error as above // hoisted but birthYear is also in TDZ
+// console.log(me) // !!! undefined // var is hoisted to an initial value of 'undefined'
+// ***  console.log(job) // ReferenceError : cannot access before initialization // hoisted but job is at TDZ here.
+// ***  console.log(birthYear)  // same error as above // hoisted but birthYear is also in TDZ
 
 var me = 'Milan'
 let job = 'teacher'
@@ -59,10 +59,11 @@ const birthYear = 2003
 
 // Hoisting with Functions
 
-console.log(addDecl(2,3))
-// console.log(addExp(2,3)) // ReferenceError : Cannot access addExp before initialization
-// console.log(addArr(2,3)) // ReferenceError : Cannot access addArr before initialization
-// console.log(addVar(2,3)) // Uncaught TypeError : addVar is not a function // because var allows hoisting initialized as undefined so we actually calls undefined which is not a fn
+//console.log(addDecl(2,3)) // !!!
+
+// *** console.log(addExp(2,3)) // ReferenceError : Cannot access addExp before initialization
+// *** console.log(addArr(2,3)) // ReferenceError : Cannot access addArr before initialization
+// *** console.log(addVar(2,3)) // Uncaught TypeError : addVar is not a function // because var allows hoisting initialized as undefined so we actually calls undefined which is not a fn
 
 function addDecl(a,b){
     return a+b
@@ -77,7 +78,7 @@ var addVar = (a,b) => a+b
 
 // Example
 
-if(!numProducts) deleteShoppingCart() // we get all products deleted even if numProducts has 10. because it is hoisted with undefined (falsy value)
+// if(!numProducts) deleteShoppingCart() // !!! we get all products deleted even if numProducts has 10. because it is hoisted with undefined (falsy value)
 
 var numProducts = 10
 
@@ -90,9 +91,10 @@ var x = 1
 let y = 2
 const z = 3
 
-console.log(x === window.x)
-console.log(y === window.y)
-console.log(z === window.z)
+// console.log(x === window.x) // !!!
+// console.log(y === window.y) // !!!
+// console.log(z === window.z) // !!!
+
 // Check window obj in console. Window is the global obj of js in browser. Variables created by let and const do not create properties on window obj. But var does.
 
 /*
@@ -117,19 +119,19 @@ console.log(z === window.z)
     this keyword will not point to the function itself and not to its variable env of the fn.
 */
 
-console.log('from outside fn :',this) // this outside fn points to window obj
+// console.log('from outside fn :',this) // !!! this outside fn points to window obj
 
 const calcAge1 = function(birthYear){ // this inside regular fn(means fn without obj attached) points to undefined as we are in strict mode. Otherwise points to global obj.
     console.log(2025-birthYear)
     console.log('from reg fn : ',this)
 }
-calcAge1(1970)
+// calcAge1(1970) // !!!
  
 const calcAgeArr = birthYear => {
     console.log(2025 - birthYear)
     console.log('from arrow fn :',this) // this points to parent fn's this. Here parent fn is global scope that points to window. so arrow fn also points to window.
 }
-calcAgeArr(1971)
+// calcAgeArr(1971) // !!!
 
 const heaven = {
   
@@ -139,14 +141,14 @@ const heaven = {
         console.log(2025 - this.year)
     }
 }
-heaven.calcAge2()
+// heaven.calcAge2() // !!!
 
 const helan = {
     year : 2005
 }
 helan.calcAge3 = heaven.calcAge2 // method borrowing // copying method from heaven obj to helan obj 
-console.log(helan)
-helan.calcAge3() // this points to obj helan as method is called from helan object (even though method is written in heaven object).
+// console.log(helan) // !!!
+// helan.calcAge3() // !!! this points to obj helan as method is called from helan object (even though method is written in heaven object).
 
 const fn = heaven.calcAge2
-// fn() // this will be undefined because fn is a regular fn. year is not defined so returns year
+// fn() // !!! this will be undefined because fn is a regular fn. year is not defined so returns year
