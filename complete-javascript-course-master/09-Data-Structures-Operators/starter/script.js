@@ -293,6 +293,7 @@ for(const [day , {open, close}] of entries){ // day => key , value obj => {open,
 
     // Sets : In sets order of values doesn't matter
   
+/*
 const ordersSet = new Set(['Pasta', 'Pizza', 'Pasta','Risotto', 'Pizza'])// Set is basically a collection of unique values. ie it can never have any duplicates.
 console.log(ordersSet) // Sets are iterable like arrays // Methods used : add(), has(), delete(), clear()
 
@@ -335,3 +336,43 @@ console.log(position)
 
 console.log(new Set(['Milan', 'Helan','Heaven', 'Milan', 'Helan']).size) // If we only wanna know number of unique positions [no unique elements creation required]
 console.log(new Set("Milan").size) // To count how many letters in a string // Because string is also an iterable
+*/
+
+    // Maps : Data structure used to map values to keys
+
+// Data is stored in key value pairs in maps. Difference is that keys can have any type. In objects, keys are always strings
+const restMap = new Map() // Easiest way to create map is to create an empty map then set its values using set() method
+restMap.set('name', 'Classico Italiano') // key-value
+restMap.set(1, 'Firenze, Italy')
+console.log(restMap.set(2, 'Lisbon, Portugal')) // Calling the set method like this not only update the map that it is called on, but also returns the map
+
+restMap.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']) // We can call set again on updated map
+       .set('open', 11)
+       .set('close',23)
+       .set(true, 'We are open :D') // Can have boolean keys
+       .set(false, 'We are closed :(')
+
+console.log(restMap.get('name')) // To read data from map we use get method
+console.log(restMap.get(true))
+console.log(restMap.get(1))
+
+const time = 21
+const open = restMap.get(time > restMap.get('open') && time < restMap.get('close')) // It return restMap.get(true) if time > open time and time < close time 
+console.log(open)
+
+// Using methods on map
+console.log(restMap.has('categories')) // Objects has a method called hasOwnProperty()
+restMap.delete(2) // We can also delete properties from objects using delete operator. But that is a slow process
+console.log(restMap.size)
+// restMap.clear()
+
+// Arrays or objects as map keys
+// restMap.set([1,2], 'Test') 
+// console.log(restMap.get([1,2])) // undefined because The array setted and array we wrote in get are 2 different arrays in heap
+
+// To make it work
+const arr = [1,2]
+restMap.set(arr, 'Test')
+console.log(restMap.get(arr))
+
+restMap.set(document.querySelector('h1'), 'Heading')// Dom elements a special type of object can also be used as keys 
