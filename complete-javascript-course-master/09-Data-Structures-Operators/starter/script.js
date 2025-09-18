@@ -119,8 +119,8 @@ console.log(p, q, r) // If no default values are given then r returns undefined
 
 */
 
-// 1. Destructuring
-
+    // Rest Pattern in :  1. Destructuring
+/*
 // Spread operator because ... on right side of =
 const arr = [1,2, ...[3,4]]
 console.log(arr) // 3,4 to individual elements (not inside array)
@@ -159,5 +159,153 @@ add(...x) // This is spread operator as we split array elements (expanded 1 arra
 restaurant.orderPizza('mushrooms','onion','olives', 'spinach')
 restaurant.orderPizza('mushrooms')
 
-// NOTE : spread operator is used where we would write values separated by comma
-// rest operator is used where we would write variable names separated by comma
+// NOTE : spread operator is used where we would write values separated by comma // rest operator is used where we would write variable names separated by comma
+*/
+
+    // Short circuiting(&& and ||)
+
+// Logical operators can use any datatype, return any datatype, they do short-circuiting or short circuit evaluation
+
+console.log('------OR------')
+
+/*
+console.log(3 || 'Jonas') // Result of OR operator doesn't always have to be a boolean 
+// For or operators short circuiting means that if first value is a truthy value it won't evaluate other but return the first value as OR needs atleast one value true to return true
+console.log('' || 'Jonas') // '' is a falsy value so jonas displayed
+console.log(true || 0) // true 
+console.log(undefined || null) // return null // undefined is a falsy value and also null If all are falsy it return last value
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null) // shortcircuit the evaluation and return Hello as it is the first truthy value appeared.
+console.log(false || undefined || null || '' || 0 || NaN) // All falsy so return last value
+
+// restaurant.numGuests = 23 // If set to zero it won't work but return 10 because 0 is a falsy value
+const guests1 = restaurant.numGuests ?  restaurant.numGuests : 10// We want to define a variable based on number of guests. And we want to set a default value if it doesn't exist
+console.log(guests1)
+
+const guests2 = restaurant.numGuests || 10// instead ternary we can use OR
+console.log(guests2)
+*/
+console.log('------AND------') // Short-circuit works opposite of OR operator
+/*
+console.log(0 && 'Jonas')  // return 0 // AND return true if both are true, It return first falsy value it encounters. If first operand is falsy it doesn't even check the second one.
+console.log(7 && 'Jonas')  // return Jonas // If both truthy return last value
+console.log('Hello' && 23 && null && 'Jonas' ) // null
+
+if(restaurant.orderPizza){
+  restaurant.orderPizza('mushrooms', 'spinach')
+}
+
+// instead of if use AND
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach') // It checks if restaurant.orderPizza exists, if yes evaluate restaurant.orderPizza('mushrooms', 'spinach'). If false nothing happens.
+
+// For practical applications, OR can be used to set default values and AND operator to execute code the second operand if first one is true
+*/
+
+    // Nullish Coalescing Operator (??) // introduced in ES2020
+/*
+restaurant.numGuests = 0 // OR operator considers this as false as zero (falsy value) is assigned and return 10. Use ?? to solve this
+const guests = restaurant.numGuests || 10
+console.log(guests)
+
+// Nullish values : null , undefined 
+const guestCorrect = restaurant.numGuests ?? 10 // First non-nullish value is returned.
+console.log(guestCorrect) // Return 0 the correct num of guests // Nullish coalescing operator work with concept of nullish values instead of falsy values. [So zero, empty string won't affect only null and undefined gives default value 10] 
+*/
+
+    // Optional Chaining
+
+/*
+// Suppose we don't know if the restaurant has opening hours and if is open in monday or not 
+if(restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open) // if monday opens return the opening hours
+
+if(restaurant.openingHours.fri) console.log(restaurant.openingHours.fri.open) // If friday opens return the openingHour
+
+// With optional chaining [?.] if a certain property does not exist then undefined is returned immediately.
+console.log(restaurant.openingHours.mon ?. open) // If property before ? exists (based on nullish property) then only property after ? is checked. Here only if monday exists it checks if it is open.
+// Mon not exists so undefined is returned 
+
+console.log(restaurant.openingHours?.mon?.open)// Can have multiple optional chaining // Check if openingHours exist , if yes then check if monday exists if yes, then open
+
+  // Example
+
+const days = ['mon', 'tue','wed','thu','fri','sat','sun']
+for(const day of days){ // Directly gives the value not the index, If need index also for(const [index,day] of days.entries()){console.log(index, day)}
+ // const open =  restaurant.openingHours[day]?.open || 'closed' // Using or consider 0 as falsy so we get closed at saturday solve using ?? 
+ const open = restaurant.openingHours[day]?.open ?? 'closed' // .day is not used because its not aproperty name of restaurant. To use variable name as property name use bracket notation
+ console.log(`On ${day}, we open at ${open}`)
+}
+for(const index in days){
+  // console.log(index)
+}
+
+for(const [day,index] of days.entries()){
+  // console.log(day, index)
+}
+
+  // Optional Chaining on Methods : WE can check a method actually exists before we call it
+
+console.log(restaurant.order ?. (0,1) ?? 'Method does not exist') // Checking if method order exist if do call its 0th and 1st value ow return the string
+
+  // Optional Chaining on Arrays
+
+const users = [
+  {name : 'Jonas', email : 'hello@jonas.io'}
+]
+
+console.log(users[0]?.name ?? 'User array empty') // zero'th value of users if exists return its name , if no name is defined return the string
+console.log(users[1]?.name ?? 'User array empty')// ?. prevents runtime errors when accessing nested properties. ?? ensures default value only when the left side is null or undefined.
+*/
+
+    // Looping Objects : Object keys, values and entries
+
+/*
+// We can also loop over objects which are not iterable. But in an indirect way
+
+// Property Names [keys]
+const {openingHours} = restaurant // destructuring // same as direct assingning => const openingHours = restaurant.openingHours
+
+const properties = Object.keys(openingHours) // Object.keys returns an array with keys of openingHours as its values. This array is looped. ie indirect looping of objects after making it an array
+console.log(properties)
+
+let openStr = `We are open on ${properties.length} days: `
+
+for(const day of properties){
+  openStr += `${day}, `
+}
+console.log(openStr)
+// Property Values
+const values = Object.values(openingHours)
+console.log(values) // Can loop over it as shown above
+
+// Looping over entire object // ie both key and value together
+const entries = Object.entries(openingHours)// To loop over the entire object we need the entries [entries => names + values together ie index and element for array key and value for object ]
+
+// for(const [key, value] of entries){
+//   console.log(key)
+//   console.log(value) // value is an obj so can be destructured there itself as below
+// }
+
+for(const [day , {open, close}] of entries){ // day => key , value obj => {open, close}
+  console.log(`On ${day}, we open at ${open} and close at ${close}`)
+}
+*/
+
+    // Sets
+  
+const ordersSet = new Set(['Pasta', 'Pizza', 'Pasta','Risotto', 'Pizza'])// Set is basically a collection of unique values. ie it can never have any duplicates.
+console.log(ordersSet) // Sets are iterable like arrays // Methods used : add(), has(), delete(), clear()
+
+console.log(new Set('Milan'))
+console.log(ordersSet.size) // size of set using size property // size is similar to length in arrays
+
+const arr = [1,2,2,3,4,5,4]
+const uniqueArr = new Set(arr)
+console.log(uniqueArr)
+
+console.log(ordersSet.has('Pizza')) // to check if a certain element is in a set
+console.log(ordersSet.has('Bread')) // has method is similar to includes method in arrays
+
+ordersSet.add('Garlic bread') // Add new element to set
+ordersSet.add('Garlic bread')
+console.log(ordersSet) // One of them is added as no duplicates
