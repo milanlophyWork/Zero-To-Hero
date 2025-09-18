@@ -291,7 +291,7 @@ for(const [day , {open, close}] of entries){ // day => key , value obj => {open,
 }
 */
 
-    // Sets
+    // Sets : In sets order of values doesn't matter
   
 const ordersSet = new Set(['Pasta', 'Pizza', 'Pasta','Risotto', 'Pizza'])// Set is basically a collection of unique values. ie it can never have any duplicates.
 console.log(ordersSet) // Sets are iterable like arrays // Methods used : add(), has(), delete(), clear()
@@ -308,4 +308,30 @@ console.log(ordersSet.has('Bread')) // has method is similar to includes method 
 
 ordersSet.add('Garlic bread') // Add new element to set
 ordersSet.add('Garlic bread')
+
+ordersSet.delete('Risotto') // Deleting elements // Similar to splice method in arrays
+// ordersSet.clear() // To delete all elements from set
+
 console.log(ordersSet) // One of them is added as no duplicates
+
+// Retrieving values from set // In sets there are no indexes like arrays. So no way of getting values. Well, if 
+// sets has no duplicate elements and order of elements doesn't matter then there is no point of getting values from a set
+
+for(const order of ordersSet){// sets are iterable so we can loop over them
+  console.log(order)
+}
+
+// Example // Usecase of sets : To remove duplicate values of arrays
+
+const staff = ['Waiter', 'Chef', 'Waiter','Manager', 'Chef','Cashier', 'Waiter'] // Instead of staff we just wanna know the positions available in restaurant. Just make set of the array
+
+const positions = new Set(staff)
+console.log(positions) 
+
+const position = [...new Set(staff)]// But we want this to be an array so use spread Operator. As ... works on all iterables.
+console.log(position) 
+// ... expands elements , [] collect them into an array. ... can only be used in 3 places : inside array literals const a = [...arr,4,5] and inside fn calls fnName(...arr), object literals const a = {...obj, age : 21}
+// Rest in array destructuring const [a, ...other] = [1, 2, 3], obj destructuring const {a, ...rest} = {name : 'Mil', age : 21}, fn parameters fn print(first, ...others){....}
+
+console.log(new Set(['Milan', 'Helan','Heaven', 'Milan', 'Helan']).size) // If we only wanna know number of unique positions [no unique elements creation required]
+console.log(new Set("Milan").size) // To count how many letters in a string // Because string is also an iterable
