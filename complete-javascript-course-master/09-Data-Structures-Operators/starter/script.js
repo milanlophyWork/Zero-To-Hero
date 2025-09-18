@@ -379,7 +379,7 @@ restMap.set(document.querySelector('h1'), 'Heading')// Dom elements a special ty
 */
 
   // Map without set method
-
+/*
 const question = new Map([
   ['question', 'What is the best programming language in the world ?'], // first position => key and second position => value 
   [1, 'C'],
@@ -412,7 +412,7 @@ console.log([...question])// sometimes we need to convert map back to an array. 
 console.log(question.entries())// Using methods entries, keys, values on maps (we used on arrays previously) To avoid iterator use spread operator and spread each value and store on array
 console.log(...question.keys()) // Used inside method console hence spread operator worked without [] 
 console.log([...question.values()])
-
+*/
 
     // Which data structure to use ?
   
