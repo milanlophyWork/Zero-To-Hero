@@ -339,7 +339,7 @@ console.log(new Set("Milan").size) // To count how many letters in a string // B
 */
 
     // Maps : Data structure used to map values to keys
-
+/*
 // Data is stored in key value pairs in maps. Difference is that keys can have any type. In objects, keys are always strings
 const restMap = new Map() // Easiest way to create map is to create an empty map then set its values using set() method
 restMap.set('name', 'Classico Italiano') // key-value
@@ -376,3 +376,72 @@ restMap.set(arr, 'Test')
 console.log(restMap.get(arr))
 
 restMap.set(document.querySelector('h1'), 'Heading')// Dom elements a special type of object can also be used as keys 
+*/
+
+  // Map without set method
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world ?'], // first position => key and second position => value 
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'javaScript'],
+  ['correct',3],
+  [true, 'Correct'],
+  [false, 'Try Again']
+]) // Array inside array structure
+
+console.log(question) // This type structure is what we get from Object.entries. This means there is an easy way to convert objects (array is atype of obj) to maps
+console.log(Object.entries(restaurant.openingHours)) 
+const hoursMap = new Map(Object.entries(restaurant.openingHours)) // openingHours obj converted to map // First it is converted to array inside array structure as above by entries then to map
+console.log(hoursMap)
+
+// Quiz App
+// console.log(question.get('question')) // !!!
+
+for(const [key, value] of question){// Maps are also iterables
+  if(typeof key==='number') {
+    // console.log(`Option ${key}: ${value}`) // !!!
+  } 
+}
+
+// const answer = Number(prompt('Enter Your Answer: ')) // !!! prompt always return a string but correct key contain a number so convert entered string to a number first as we use strict equality. (Type matters)
+// console.log(question.get(answer === question.get('correct'))) // !!! When both are true it reads as question.get(true) and return 'Correct'
+
+console.log([...question])// sometimes we need to convert map back to an array. Done by building new array using [] then unpacking again using spread operator
+
+console.log(question.entries())// Using methods entries, keys, values on maps (we used on arrays previously) To avoid iterator use spread operator and spread each value and store on array
+console.log(...question.keys()) // Used inside method console hence spread operator worked without [] 
+console.log([...question.values()])
+
+
+    // Which data structure to use ?
+  
+/*
+  There are actually 3 sources of data: 
+  
+  From pgm itself => Data written directly in source code (eg: status msg displayed based on user actions)
+  From UI => Data input from the user or data written in DOM (eg: tasks in todo app)
+  From external sources => Data fetched for example from web API (eg: recipe objects) // We use web APIs to get data from other web applications
+
+  These collections of datas we got need to be stored. And hence we use data structures. There are 4 built-in data structures in JS (arrays, sets, objects , maps [weakSets and weakMaps also]). Use an array or a set if we need a 
+  simple set of values. If we need key-value pairs then we need an object or map. Keys allows us to describe values but in arrays or set we simply have values without any description.
+
+  Datas from web APIs usually comes in a special data format called JSON. JSON is essentially just text so a long string but it can easily be converted to JS objects because 
+  it uses the same formatting as js objects and arrays.
+
+  They are also WeakSets and WeakMaps data structures in js (built-in). Other data structures (non-built-in) include Stacks, queues, linked lists, trees and hash tables.
+
+  Arrays vs sets 
+
+  Use arrays whenever you need to store values in order and when these values might contain duplicates. Also when you need to manipulate data. 
+  Sets should be used when you are working with unique values. Also in situations when high performance is required. In cases we need to search for an item or delete an item is faster in sets than in arrays. Also use 
+  when you need to remove dupliicate values from an array.
+
+  Objects vs maps
+
+  Use maps when you simply need to map keys to values and also when you need keys that are not strings. 
+  If you need fns as values use an object. In objects these fns are called methods and we can use this keyword to access properties of same object which is impossible in maps. Also when working 
+  with JSON data also we probably use objects
+  
+  Advantage of objects is that it is easier to write and to access data by using dot operator or brackets operator.
+*/
