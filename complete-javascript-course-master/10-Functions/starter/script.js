@@ -112,7 +112,7 @@ document.body.addEventListener('click', high5);
 */
 
     // Higher order : Fns returning Fns // Useful in fnal programming
-
+/*
 const greet = function(greeting){
     return function (name){
         console.log(`${greeting} ${name}`)
@@ -125,6 +125,8 @@ greet('Hey')('Lophy')// It can be done in one go
 // Challenge
 const greetArr = greeting => name => console.log(`${greeting} ${name}`)
 greetArr('Hi')('Leena')
+
+*/
 
     // Call and apply methods : Allow us to manually set the this keyword for any fn call
 
@@ -223,3 +225,44 @@ function addTaxRate(rate){
 const addVAT2 = addTaxRate(0.23)
 console.log(addVAT2(100))
 */
+
+    // Immediately invoked function expressions [IIFE]
+
+const runOnce = function(){
+    console.log('This will never run again')
+};
+// runOnce() // Can be runned any number of time.
+
+// IIFE runs only once and then disappears 
+
+(function(){ // fn exp wrapped in () and then called immediately
+    console.log('This will never run again')
+})();
+
+(()=> console.log('IIFE in arrow fn'))(); // Same work for arrow fn // These fns runs only once
+
+(function(){
+    const isPrivate = 23
+    console.log('Hidden')
+})
+
+// console.log(isPrivate) // ReferenceError: isPrivate not defined as it is hidden. If fn not used then isPrivate will be declared globally and accessible to all
+
+/*  
+    Inner scope have access to anything defined in global scope. But global scope does not have access to anything 
+    inside scope. ie All data defined inside a scope is private. ie data is encapsulated. 
+      
+        IIFE was the main trick used to hide variables from global scope [before ES6 there was only fn scope]. Then by 
+    introduction of let and const block scope came into and now if we need to create  a new scope for data privacy 
+    just create a block like below. No need to create fn to create new scope 
+*/
+
+{
+    const isPrivate = 23
+    var notPrivate = 23
+}
+// console.log(isPrivate)
+console.log(notPrivate) // var ignore block
+
+    // Closures
+
