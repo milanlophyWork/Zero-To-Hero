@@ -74,3 +74,49 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+  // Three data tranformation methods : 1. Map method
+
+// Another way used to loop over array. But unlike forEach, map method will give us a brand new array with elements after applied the callback fn
+
+const eurToUsd = 1.1 // 1 euro = 1.1 US dollar
+
+const movementsUSD = movements.map(mov => mov * eurToUsd)
+console.log(movementsUSD)
+
+// using for of loop
+const movementsForUSD = []
+
+for(const mov of movements){
+  movementsForUSD.push(mov * eurToUsd)
+}
+console.log(movementsForUSD)
+
+// map also have access to index and the whole array
+
+const movementsDesc = movements.map((mov, i, arr) =>  // forEach method create a sideEffects [elements logged one by one to console] map method won't create sideEffects [all elements into a new array then logged to console at once]
+  `Movement ${i+1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`) // Math.abs() make negative values positive
+
+console.log(movementsDesc)
+
+  //  2. Filter method
+
+const deposits = movements.filter(function (mov, i, arr){ // Also have access to index and the whole array (here movements) 
+  return mov >= 0
+})
+console.log(movements) 
+console.log(deposits) // filtering positive vlaues only from movements // using filter, allow us to chain all methods together
+
+// Using for of
+const depositsFor = []
+for(const mov of movements){
+  if(mov >= 0){
+    depositsFor.push(mov)
+  }
+}
+console.log(depositsFor)
+
+const withdrawals = movements.filter(mov => mov < 0)
+console.log(withdrawals)
+
+  // 3. Reduce method
