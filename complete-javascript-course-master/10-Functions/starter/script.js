@@ -80,8 +80,8 @@ console.log(newPassport(milan)) // Same happens here. Passing milan copies the r
     x is a higher order fn that returns fn y.
 */
 
-    // Functions accepting callback fns
-
+    // Higher order : Functions accepting callback fns
+/*
 const oneWord = function(str){ // Fn to replace space in a word.
     return str.replace(/ /g, '').toLowerCase() // To select all spaces we use G flag and then replace them with an empty string
 }
@@ -109,6 +109,22 @@ const high5 = function(){
 document.body.addEventListener('click', high5);
 
 ['Jonas','Martha'].forEach(high5)
+*/
+
+    // Higher order : Fns returning Fns // Useful in fnal programming
+
+const greet = function(greeting){
+    return function (name){
+        console.log(`${greeting} ${name}`)
+    }
+}
+const greeterHey = greet('Hey') // greeterHey is now the fn returned from greet.
+greeterHey('Milan') // This works because of closure
+greet('Hey')('Lophy')// It can be done in one go
+
+// Challenge
+const greetArr = greeting => name => console.log(`${greeting} ${name}`)
+greetArr('Hi')('Leena')
 
     // Call and apply methods : Allow us to manually set the this keyword for any fn call
 
