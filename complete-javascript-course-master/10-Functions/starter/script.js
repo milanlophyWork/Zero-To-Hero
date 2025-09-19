@@ -99,6 +99,7 @@ const transformer = function(str, fn){ // Creating a higher order fn that take a
 
     console.log(`Transformed by : ${fn.name}`) // Fns can have properties besides methods. eg: name property
 }
+
 transformer('JavaScript is the best!', upperFirstWord)
 transformer('Hello worldJS', oneWord)
 
@@ -155,6 +156,7 @@ const book = lufthansa.book // This book is not a method. it's now a regular fun
 // book(23, 'Sara Williams') // Regular fn so undefined in strict mode // We want this keyword to point to corresponding obj as called. And we have 3 fn methods to do this. call, apply and bind
 
     // Call method
+
 book.call(eurowings, 213, 'Sarah Williams') // first arg is what we want the this keyword to point to, other arg are arg of original fn.
 console.log(eurowings) // with call method we set this keyword to eurowings.
 
@@ -178,6 +180,7 @@ book.call(swiss, ...flightData) // Instead of apply use call and then use spread
 */
 
     // Bind Method : Also allow us to manually set the this keyword for any fn call
+
 /*
 const book = lufthansa.book // Difference is that bind does not immediately call the fn. Instead it returns a new fn where this keyword is bound. So it is set to whatever value was pass into bind.
 
@@ -189,10 +192,12 @@ bookLH(43, 'Steven Homes') // Instead of using call all the time we can just bin
 
 // book.call(eurowings, 213, 'Sarah Williams')// In call method we can pass multiple arguments besides the this keyword. Same can be done in bind method too.
 const bookEW213 = book.bind(eurowings, 213) // Creating function using bind for EW with flight no. 213 // Fixing up certain arguments beforehand . This is called partial application
+
 bookEW213('Christopher') // Flightnum is already set only name required as arg
 bookEW213('Sarah Williams') // Partial application => a part of arguments of orginal fn are already applied.
 
     // Using object together with event listeners 
+
 lufthansa.planes = 300 // This company has 300 planes // planes number and buyPlane method to lufthansa obj
 
 lufthansa.buyPlane = function(){
@@ -205,7 +210,7 @@ lufthansa.buyPlane = function(){
 document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa)) // we want this to point to lufthansa so bind with lufthansa 
 // lufthansa.buyPlane() // return 301 as this points to lufthansa obj
 
-// Partial Application => We can preset parameters. We partially set the parameters actually
+    // Partial Application => We can preset parameters. We partially set the parameters actually
 
 const addTax = (rate, value)=> value + value * rate // General fn for creating tax.
 console.log(addTax(0.1, 200))
@@ -266,3 +271,18 @@ console.log(notPrivate) // var ignore block
 
     // Closures
 
+const secureBooking = function(){
+    let passengerCount = 0 // PassengerCount cannot be accessed and manipulated from outside so cld secureBooking
+
+    return function(){
+        passengerCount++
+        console.log(`${passengerCount} passengers`)
+    }
+} // Higher order fn : NOTE *** fn returning fn => works due to closure 
+
+const booker = secureBooking() // called securebooking and it is popped off after returning the fn.
+booker() // then on calling booker passengerCount increments eventhough it is popped. This is due to closure. closure makes a fn remember all the variables that existed at fn's birthPlace
+booker() // After popped off variables stored in stack are garbage collected except if it does not form a closure. ie if an obj is reachable by closure it is not garbage collected.  
+booker() // And hence it will be stored in heap. // A fn always has access to the variable env of the exec ctxt in which it was created even after the exec ctxt is gone.
+
+console.dir(booker)
