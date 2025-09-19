@@ -23,7 +23,7 @@ createBooking(undefined, undefined, 200) // We can't just skip first two argumen
 */
 
     // Passing arguments : Value vs Reference
-
+/*
 const flight = 'LH234' // This one here is primitive (just a string) and is stored in exec ctxt itself
 const milan = { // object stored in heap
     name : 'Milan Lophy',
@@ -57,6 +57,58 @@ console.log(newPassport(milan)) // Same happens here. Passing milan copies the r
 // Js doesn't have passing by reference it only have passing by value even though it looks like it's passing by reference. 
 // In other languages, we could pass a ref instead of that value. This works even with primitves ie we could pass a ref to the value of five instead of passing five and then the org value outside fn also changes.
 // But in js no pass by reference. We do actually pass reference, ie memory address of obj as above but that ref itself is still a value 
+*/
+
+    // First class & higher order fns
+
+/* 
+    First class fns or first citizens implies fns are simply values. This is because fns are just another type of obj in js. Since obj are values fns are values too. So we can store them in variables, obj properties, ...
+    We can also pass fns as arg to other fns. And also return a fn from another fn. Objects have methods too. Like arrays (a type of obj) have array methods. Likewise fns have fn methods. eg: bind(). 
+    
+    First class fn in js makes it possible for us to use and write higher order fns. Higher order fn is either a fn that receives another fn as arg or a fn that returns a new fn. 
+    
+    Eg: addEventListener(event, eventHandlerFn) receive another fn as input. So addEventListener is the higher order fn and we usually say that the fn that is passed in is a callback fn. Because callback 
+    fn will be called later by the higher order fn. Here addEventListener will call eventHandler callback fn when event occurs. 
+
+    function x(){ 
+    ...
+        return fn y(){
+        ...
+        }
+    }
+
+    x is a higher order fn that returns fn y.
+*/
+
+    // Functions accepting callback fns
+
+const oneWord = function(str){ // Fn to replace space in a word.
+    return str.replace(/ /g, '').toLowerCase() // To select all spaces we use G flag and then replace them with an empty string
+}
+
+const upperFirstWord = function(str){ // Transform first word to upper case
+    const [first, ...others] = str.split(' ') // split the string wherever space occurs into an array of words. "hello world JS" => ["hello", "world", "JS"] 
+    // split(' ') split wherever a space is there. "hello w".split('') split every character=> ['h','e','l','o',' ','w'], "hello world".split() => if nothing passed it will return whole string in an array ["hello world"]
+    return [first.toUpperCase(), ...others].join(' ') // join(' ') joins the array elemnets back to string
+}
+
+// Higher order fn
+const transformer = function(str, fn){ // Creating a higher order fn that take a string and a higher order fn
+    console.log(`Original string : ${str}`)
+    console.log(`Transformed string : ${fn(str)}`)
+
+    console.log(`Transformed by : ${fn.name}`) // Fns can have properties besides methods. eg: name property
+}
+transformer('JavaScript is the best!', upperFirstWord)
+transformer('Hello worldJS', oneWord)
+
+// Js using callbacks // helps to split up code into more reusable and interconnected parts. It allow us to create abstraction. Abstraction means we hide the detail of some code. Above transformer fn does not care about how string is transformed.
+const high5 = function(){
+    console.log('Hi')
+}
+document.body.addEventListener('click', high5);
+
+['Jonas','Martha'].forEach(high5)
 
     // Call and apply methods : Allow us to manually set the this keyword for any fn call
 
