@@ -1,4 +1,63 @@
 'use strict';
+    // Default parameters
+/*
+const bookings = []
+const tax = 0.1
+
+const createBooking = function(flightNum = 'EW213', numPassengers, price = 100 + 100 * tax){ // Modern js set default parameters like this. Default values can have expressions like we did for numPassengers
+    // ES5
+    numPassengers = numPassengers || 10 // Before ES6 default parameters were set like this 
+
+    const booking = {
+        flightNum : flightNum, // instead use object literal syntax
+        numPassengers,
+        price
+    }
+    console.log(booking)
+    bookings.push(booking)
+}
+
+createBooking('LH212')
+createBooking()
+createBooking(undefined, undefined, 200) // We can't just skip first two arguments and set the third one. To do so set them as undefined
+*/
+
+    // Passing arguments : Value vs Reference
+
+const flight = 'LH234' // This one here is primitive (just a string) and is stored in exec ctxt itself
+const milan = { // object stored in heap
+    name : 'Milan Lophy',
+    passport : 234432543
+}
+
+const checkIn = function(flightNum, passenger){ // Let number of flight has changed 
+    flightNum = 'LH123' // Not good practise
+    passenger.name = 'Ms. ' + passenger.name 
+
+    if(passenger.passport === 234432543){
+        alert('Checked in')
+    }else{
+        alert('Wrong passport!')
+    }
+}
+// passing flight, copies flight to flightNum, org value flight itself. So changing flightNum won't affect flight.
+// checkIn(flight, milan)// passing milan, copies the ref of milan obj in heap to passenger. Now milan and passenger has same ref within it. Changing passenger.name affect org obj in heap so both are affected.
+
+console.log(flight)
+console.log(milan)
+
+// be careful of this behaviour of obj // Another scenario 
+const newPassport = function(person){ // Change the person's passport number
+    person.passport = Math.trunc(Math.random() * 10000000) // This will create a random number between 0 (inclusive) and 10000000 (exclusive)
+    return person
+}
+console.log(newPassport(milan)) // Same happens here. Passing milan copies the ref of milan into person. So changing password of person changes org milan obj.
+// checkIn(flight, milan)
+
+// Js doesn't have passing by reference it only have passing by value even though it looks like it's passing by reference. 
+// In other languages, we could pass a ref instead of that value. This works even with primitves ie we could pass a ref to the value of five instead of passing five and then the org value outside fn also changes.
+// But in js no pass by reference. We do actually pass reference, ie memory address of obj as above but that ref itself is still a value 
+
     // Call and apply methods : Allow us to manually set the this keyword for any fn call
 
 const lufthansa = { // Suppose we are in airline. Lufthansa is the biggest European airline group
@@ -49,7 +108,7 @@ book.call(swiss, ...flightData) // Instead of apply use call and then use spread
 */
 
     // Bind Method : Also allow us to manually set the this keyword for any fn call
-
+/*
 const book = lufthansa.book // Difference is that bind does not immediately call the fn. Instead it returns a new fn where this keyword is bound. So it is set to whatever value was pass into bind.
 
 const bookEW = book.bind(eurowings) // bind create a new fn with this keyword set to eurowings. It will not call book fn instead return a new fn where this always set to eurowings.
@@ -95,3 +154,4 @@ function addTaxRate(rate){
 }
 const addVAT2 = addTaxRate(0.23)
 console.log(addVAT2(100))
+*/
