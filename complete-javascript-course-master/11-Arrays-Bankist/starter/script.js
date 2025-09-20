@@ -202,7 +202,7 @@ console.log(`Your latest large movement was ${movements.length - (largeMov +1)} 
   // Some and every methods
 
 // Some
-
+/*
 console.log(movements)
 
 // checks equality
@@ -225,6 +225,20 @@ if(amount > 0 && movements.some(mov => mov >= amount * 0.1)){
 }
 
 // console.log(amount*0.1) // 10 % of requested amount
-
+*/
 
 // Every
+
+console.log(movements)
+console.log(accounts)
+
+console.log(movements.every(mov => mov > 0))// Return true if all of the elements in the array satisfy the condition. ie if every elements passes the test in our callback 
+console.log(movements.every(mov => mov < 5000)) // Every movement is less than 5000
+console.log(account4.movements.every(mov => mov > 0)) // Every movement inside account4 is > 0
+
+// separating callback
+const deposit = mov => mov > 0 // Implementing DRY principle
+
+console.log(movements.some(deposit)) // return true as some of the mov's are > 0
+console.log(movements.every(deposit)) // return false as not every mov's > 0 
+console.log(movements.filter(deposit)) // filter out mov's > 0 only
