@@ -201,8 +201,30 @@ console.log(`Your latest large movement was ${movements.length - (largeMov +1)} 
 
   // Some and every methods
 
+// Some
+
 console.log(movements)
+
+// checks equality
 console.log(movements.includes(-130)) // includes test equality. It tests if any value in array is exactly equal to -130. To test a condition we use the some method. 
 
+// checks condition
 const anyDeposits = movements.some(mov=> mov > 0)// We want to know if there is any deposits (+ve movs) in this array.
 console.log(anyDeposits) // return true as we have deposits here (atleast one should be there to return true)
+
+const anyDep5000 = movements.some(mov => mov > 5000)
+console.log(anyDep5000) // return false as no deposits > 5000
+
+// Banks grant loan if there is atleast one deposit with atleast 10% of the requested loan amount
+const amount  = 20000
+if(amount > 0 && movements.some(mov => mov >= amount * 0.1)){
+  console.log('grant loan')
+
+  movements.push(amount) // granting the loan amount to the account
+  console.log(movements)
+}
+
+// console.log(amount*0.1) // 10 % of requested amount
+
+
+// Every
