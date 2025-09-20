@@ -77,6 +77,8 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
   // Three data tranformation methods : 1. Map method
 
+/*
+
 // Another way used to loop over array. But unlike forEach, map method will give us a brand new array with elements after applied the callback fn
 
 const eurToUsd = 1.1 // 1 euro = 1.1 US dollar
@@ -98,9 +100,11 @@ const movementsDesc = movements.map((mov, i, arr) =>  // forEach method create a
   `Movement ${i+1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`) // Math.abs() make negative values positive
 
 console.log(movementsDesc)
+*/
 
   //  2. Filter method
 
+/*
 const deposits = movements.filter(function (mov, i, arr){ // Also have access to index and the whole array (here movements) 
   return mov >= 0
 })
@@ -118,5 +122,87 @@ console.log(depositsFor)
 
 const withdrawals = movements.filter(mov => mov < 0)
 console.log(withdrawals)
+*/
 
-  // 3. Reduce method
+  // 3. Reduce method // Most powerful array method //reduce(fn(acc, curr, i, arr) {}, initialAcc) initial value of accumulator is zero by default
+/*
+console.log(movements)// Reduce method reduces all elements in an array into a single value
+const balance = movements.reduce((acc, curr, i, arr) => { // accumulator = snowball. Keeps the running result  
+  console.log(`Iteration ${i}: ${acc}`)
+  return acc + curr
+}, 0)
+console.log(balance)
+
+const numbers = [5, 12, 8, 130, 44]
+
+const max = numbers.reduce((acc, curr)=> curr > acc ? curr : acc, numbers[0]) // always go with first value of array when trying to find max or min value
+console.log(max)
+
+const sum = numbers.reduce((acc, curr)=> acc + curr)
+console.log(sum)
+
+// using for of
+
+let sumFor = 0
+for(const mov of movements){
+  sumFor += mov
+}
+console.log(sumFor)
+*/
+
+  // Find method : Retrieve one element of an array based on a condition 
+/*
+console.log(movements)
+
+const firstWithdrawal = movements.find(mov=> mov < 0) // filter return a new array but find return the element itself
+console.log(firstWithdrawal) // filter returns all elements that match the condition find only returns the first element that match the condition
+
+console.log(accounts)
+const account = accounts.find(acc => acc.owner === "Jessica Davis")
+console.log(account)
+
+
+// Using for
+let accountFor
+for(const acc of accounts){
+  if(acc.owner === 'Jessica Davis') {
+    accountFor = acc
+    break
+  }
+}
+console.log(accountFor)
+*/
+
+  // FindIndex method : returns the index of the first found element that match the condition and the not element itself
+/*
+const index = accounts.findIndex(acc => acc.pin === 1111)
+accounts.splice(index, 1)// To delete an element from the array we use the splice method. Delete the element in given index. The number of elements to be removed is specified next. Here only 1
+console.log(accounts) // indexOf method we can only search for a specific value that is in the array. While findIndex allows us to use a condition (callback) to return index of first match
+
+const numbers = [34,5,20,45]
+console.log(numbers.indexOf(20))
+*/
+
+  // FindLast and FindLastIndex Method : do same as find and findIndex but start searching from last to first element
+/*
+console.log(movements)
+const lastWithdrawal = movements.findLast(mov => mov < 0)
+console.log(lastWithdrawal)
+
+const lastWithdrawalIndex = movements.findLastIndex(mov => mov < 0)
+console.log(lastWithdrawalIndex)
+
+const largeMov = movements.findLastIndex(mov => Math.abs(mov > 1000))
+
+console.log(largeMov) // Last mov > 1000 is 1300 at 7th position. Occured time is array length - the mov's index + 1. 
+console.log(largeMov + 1) // to get position when start with 1 instead of zero
+console.log(`Your latest large movement was ${movements.length - (largeMov +1)} movements ago`)
+*/
+
+  // Some and every methods
+
+console.log(movements)
+console.log(movements.includes(-130)) // includes test equality. It tests if any value in array is exactly equal to -130. To test a condition we use the some method. 
+
+const anyDeposits = movements.some(mov=> mov > 0)// We want to know if there is any deposits (+ve movs) in this array.
+console.log(anyDeposits) // return true as we have deposits here (atleast one should be there to return true)
