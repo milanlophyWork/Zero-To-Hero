@@ -228,7 +228,7 @@ if(amount > 0 && movements.some(mov => mov >= amount * 0.1)){
 */
 
 // Every
-
+/*
 console.log(movements)
 console.log(accounts)
 
@@ -242,3 +242,31 @@ const deposit = mov => mov > 0 // Implementing DRY principle
 console.log(movements.some(deposit)) // return true as some of the mov's are > 0
 console.log(movements.every(deposit)) // return false as not every mov's > 0 
 console.log(movements.filter(deposit)) // filter out mov's > 0 only
+*/
+
+  // Flat and Flat Map method // introduced in ES2019
+
+const arr = [[1,2,3], [4,5,6], 7,8] // suppose we want to take all these elements separated and put together in one big array
+console.log(arr.flat()) // flat removes the nested arrays and flattens the array
+
+const arrDeep = [[[1,2],3], [4, [5,6]], 7,8]
+// console.log(arrDeep.flat()) // But flat method only goes one level deep. This is two level deep. Can be fixed by depth arg
+console.log(arrDeep.flat(2)) // specifying depth to be flattened. By default it is 1 hence always flattening one level
+
+// consider bank want to calculate the overall balance of all the movements of all the accounts
+
+// const accMovements = accounts.map(acc => acc.movements) // We have movements inside each obj of accounts array. So first take all movements to a new array. Use map
+// console.log(accMovements)
+// const allMov = accMovements.flat() // Now flatten these nestings using flat() method
+// console.log(allMov)
+// const overallBalance = allMov.reduce((acc, curr)=> acc + curr) // now add all the mov together
+// console.log(overallBalance)
+
+// Using flat
+const overallBalance = accounts.map(acc => acc.movements).flat().reduce((acc, curr)=> acc + curr, 0) // performing all at once
+console.log(overallBalance) // It had become a pretty common operation to use map first then flattening the result. To solve this flatMap was introduced.
+
+// Using flatMap
+
+const overallBalance2 = accounts.flatMap(acc => acc.movements).reduce((acc, curr)=> acc + curr)
+console.log(overallBalance2) // flat map only goes one level deep if you need to go deeper than one level use flat method.
