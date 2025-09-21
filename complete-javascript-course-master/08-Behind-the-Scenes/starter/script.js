@@ -210,7 +210,7 @@ var addArr2 = (a,b) => {
 }
 // addArr2(3,5) // !!!
 
-        // Memory MAnagement : Primitives Vs Objects
+        // Memory Management : Primitives Vs Objects
 
 /*
     Memory management is about how js engine allocate space in memory for creating variables and later frees up that memory space. Memory is

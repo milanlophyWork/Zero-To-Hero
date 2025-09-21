@@ -245,7 +245,7 @@ console.log(movements.filter(deposit)) // filter out mov's > 0 only
 */
 
   // Flat and Flat Map method // introduced in ES2019
-
+/*
 const arr = [[1,2,3], [4,5,6], 7,8] // suppose we want to take all these elements separated and put together in one big array
 console.log(arr.flat()) // flat removes the nested arrays and flattens the array
 
@@ -270,3 +270,32 @@ console.log(overallBalance) // It had become a pretty common operation to use ma
 
 const overallBalance2 = accounts.flatMap(acc => acc.movements).reduce((acc, curr)=> acc + curr)
 console.log(overallBalance2) // flat map only goes one level deep if you need to go deeper than one level use flat method.
+*/
+
+  // Sorting Arrays : sort method
+
+// sorting with strings 
+const owners = ['Jonas', 'Zach','Adam', 'Martha']
+
+console.log('Before owners :', owners)
+
+console.log(owners.sort()) // It also mutates the orginal array
+console.log('After owners :',owners)
+
+// sorting with numbers
+const numbers = [3,5,2,5,3]
+console.log(numbers.sort())
+
+console.log(movements)
+console.log(movements.sort()) // Not sorted because sort() method does sorting based on strings not numbers. So each array element is conveerted to a string.
+
+const arr = [200, 450, -400, 70]
+console.log(arr.sort()) // First convert 200 to "200", 450 to "450", -400 to "-400", 70 to "70". Then sort it alphabetically, - comes first always. "200" comes before "70" as "2" less than "7"
+
+
+movements.sort((a,b)=> { // We can fix this by passing in a compare callback fn into sort() method || return < 0 => A then B // return > 0 => B then A
+  
+  if(a > b) return 1//Ascending order : small to larger
+  if(b > a) return -1
+}) // if callback return -ve value then a will be sorted before b, if it return +ve then b will be placed before a. 
+console.log(movements)
